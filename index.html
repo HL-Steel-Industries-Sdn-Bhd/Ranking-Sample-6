@@ -42,7 +42,7 @@
 
   .card-content {
     width: 90%;
-    height: 95%; /* 拉高卡片内容 */
+    height: 95%; /* 卡片内容高度 */
     background: rgba(255, 255, 255, 0.9);
     border-radius: 20px;
     padding: 1rem;
@@ -60,15 +60,21 @@
     margin-bottom: 1rem;
   }
 
+  /* 表格拉高显示16行 */
   table {
     width: 100%;
-    font-size: 1.5rem; /* 字放大 */
     border-collapse: collapse;
+    height: 100%; /* 填满内容容器 */
+  }
+
+  tr {
+    height: calc(100% / 16); /* 每行自适应，显示16行 */
   }
 
   th, td {
-    padding: 1rem; /* 放大格子 */
+    padding: 0.3rem; /* 减小 padding，保证16行能显示 */
     border-bottom: 1px solid #e5e7eb;
+    font-size: 1.2rem;
   }
 
   th {
@@ -153,11 +159,15 @@
     to { text-shadow: 0 0 25px rgba(255,255,255,1); opacity: 0.9; }
   }
 
-  /* ---------- 表格拉高显示16行 ---------- */
-  .card-content table tr {
-    height: 40px; /* 拉高行高 */
+  @media(max-width: 800px){
+    .scene { width: 100vw; height: 80vh; }
+    .card { flex: 0 0 100vw; height: 80vh; }
+    h2 { font-size: 1.4rem; }
+    th, td { font-size: 1rem; padding:0.2rem; }
+    .arrow { font-size: 3rem; opacity: 0.5; }
+    .datetime-box { width:200px; height:200px; font-size:1rem; }
+    img.logo { top: 220px; width: 180px; }
   }
-
 </style>
 </head>
 <body>
@@ -183,7 +193,6 @@
   </div>
 
 <script>
-// ---------- 数据与逻辑 ----------
 const cardData = [
   {
     title: "Total Point Ranking",
@@ -337,9 +346,9 @@ window.addEventListener("resize", updateCarousel);
 function updateDateTime() {
   const now = new Date();
   const options = { weekday: 'long' };
-  const date = now.toLocaleDateString('en-US'); // MM/DD/YYYY
-  const time = now.toLocaleTimeString('en-US'); // HH:MM:SS AM/PM
-  const weekday = now.toLocaleDateString('en-US', options); // Weekday
+  const date = now.toLocaleDateString('en-US');
+  const time = now.toLocaleTimeString('en-US');
+  const weekday = now.toLocaleDateString('en-US', options);
 
   document.getElementById('date').textContent = date;
   document.getElementById('time').textContent = time;
