@@ -344,9 +344,9 @@ window.addEventListener("resize", updateCarousel);
 function updateDateTime() {
   const now = new Date();
   const options = { weekday: 'long' };
-  const date = now.toLocaleDateString('en-US');
+  const date = now.toLocaleDateString('en-GB');
   const time = now.toLocaleTimeString('en-US');
-  const weekday = now.toLocaleDateString('en-US', options);
+  const weekday = now.toLocaleDateString('en-GB', options);
 
   document.getElementById('date').textContent = date;
   document.getElementById('time').textContent = time;
